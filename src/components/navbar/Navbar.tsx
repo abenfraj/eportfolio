@@ -69,10 +69,10 @@ const Navbar = () => {
             justifyContent: "flex-start",
             backgroundColor:
               location.pathname === item.path ? "primary.main" : "#f0f0f0",
-            borderRadius: "30px", // Slightly increased for aesthetic balance
-            height: "60px", // Increased size
-            minWidth: "60px", // Increased circle size
-            paddingRight: location.pathname === item.path ? "24px" : "0",
+            borderRadius: "30px",
+            height: "60px",
+            minWidth: "60px",
+            paddingRight: "0",
             overflow: "hidden",
             transition: "all .3s ease",
             "&:hover": {
@@ -82,6 +82,7 @@ const Navbar = () => {
               "& .MuiIconButton-root": {
                 color: "#fff",
               },
+              // This applies to all buttons, but for the selected one, it's overridden below
               "& .MuiTypography-root": {
                 display: "block",
               },
@@ -96,7 +97,7 @@ const Navbar = () => {
               marginLeft: "10px",
               color: "inherit",
               "& .MuiSvgIcon-root": {
-                fontSize: "1.5rem", // Increase the icon size for better visibility
+                fontSize: "1.5rem",
               },
               "&:hover": {
                 backgroundColor: "transparent",
@@ -107,8 +108,14 @@ const Navbar = () => {
           </IconButton>
           <Typography
             sx={{
-              display: location.pathname === item.path ? "block" : "none",
+              display: "none", // Default to not displaying text for all buttons
               flexGrow: 1,
+              ...(location.pathname === item.path &&
+                {
+                  // Conditionally applying styles for the selected button
+                  // This overrides the hover behavior, but since display is "none" by default,
+                  // it remains hidden unless hovered because of the &:hover rule above
+                }),
             }}
           >
             {item.label}
