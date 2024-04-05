@@ -9,6 +9,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
+import "./Navbar.css"; // Import the CSS file here
 
 const icons = [
   { icon: <HomeOutlinedIcon />, label: "Home", id: "home", path: "/" },
@@ -62,64 +63,18 @@ const Navbar = () => {
           key={item.id}
           component={Link}
           to={item.path}
-          sx={{
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            backgroundColor:
-              location.pathname === item.path ? "primary.main" : "#f0f0f0",
-            borderRadius: "30px",
-            height: "60px",
-            minWidth: "60px",
-            paddingRight: "0",
-            overflow: "hidden",
-            transition: "all .3s ease",
-            "&:hover": {
-              backgroundColor: "primary.main",
-              color: "#fff",
-              paddingRight: "24px",
-              "& .MuiIconButton-root": {
-                color: "#fff",
-              },
-              // This applies to all buttons, but for the selected one, it's overridden below
-              "& .MuiTypography-root": {
-                display: "block",
-              },
-            },
-            color: location.pathname === item.path ? "#fff" : "#666",
-          }}
+          className={`nav-item ${
+            location.pathname === item.path ? "nav-item-selected" : ""
+          }`}
         >
           <IconButton
             aria-label={item.label}
             disableRipple
-            sx={{
-              marginLeft: "10px",
-              color: "inherit",
-              "& .MuiSvgIcon-root": {
-                fontSize: "1.5rem",
-              },
-              "&:hover": {
-                backgroundColor: "transparent",
-              },
-            }}
+            className="nav-icon"
           >
             {item.icon}
           </IconButton>
-          <Typography
-            sx={{
-              display: "none", // Default to not displaying text for all buttons
-              flexGrow: 1,
-              ...(location.pathname === item.path &&
-                {
-                  // Conditionally applying styles for the selected button
-                  // This overrides the hover behavior, but since display is "none" by default,
-                  // it remains hidden unless hovered because of the &:hover rule above
-                }),
-            }}
-          >
-            {item.label}
-          </Typography>
+          <Typography className="nav-text">{item.label}</Typography>
         </Box>
       ))}
     </Box>

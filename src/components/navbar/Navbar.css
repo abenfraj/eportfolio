@@ -1,0 +1,50 @@
+.nav-item {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f0f0f0; /* Default background */
+  border-radius: 30px;
+  height: 60px;
+  min-width: 60px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.nav-item:hover {
+  background-color: #34ebc3; /* Make button blue on hover */
+  color: #fff;
+  padding-right: 24px;
+}
+
+.nav-item:hover .MuiIconButton-root {
+  color: #fff;
+}
+
+.nav-item:hover .MuiTypography-root {
+  display: block; /* Ensure text is shown on hover */
+}
+
+.nav-item-selected {
+  background-color: #34ebc3; /* Primary color for selected item */
+  color: #fff;
+}
+
+.nav-item-selected:hover {
+  background-color: #34ebc3; /* Also turn blue on hover for consistency */
+}
+
+.nav-icon {
+  margin-left: 10px;
+  color: inherit;
+}
+
+.nav-icon:hover {
+  background-color: transparent;
+}
+
+.nav-text {
+  display: none; /* Default to not displaying text */
+  flex-grow: 1;
+}
