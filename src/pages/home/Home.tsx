@@ -31,10 +31,12 @@ class Home extends React.Component {
       <>
         <div style={backgroundStyle} /> {/* Background image div */}
         <Grid container spacing={2} style={gridStyle}>
+          <Grid item xs={1}></Grid>
           <Grid
             item
-            xs={5}
+            xs={4}
             sx={{
+              paddingLeft: "10px",
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",
@@ -53,11 +55,11 @@ class Home extends React.Component {
             }}
           >
             <img
-              src="https://via.placeholder.com/150"
+              src={process.env.PUBLIC_URL + "/portrait.png"}
               alt="placeholder"
               style={{
                 borderRadius: "50%",
-                width: "80%",
+                width: "70%",
               }}
             />
           </Grid>
