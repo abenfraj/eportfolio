@@ -31,12 +31,16 @@
   color: #fff;
 }
 
+.nav-item-selected .MuiIconButton-root {
+  color: #fff;
+}
+
 .nav-item-selected:hover {
   background-color: #34ebc3; /* Also turn blue on hover for consistency */
 }
 
 .nav-icon {
-  margin-left: 10px;
+  margin-left: 10px !important;
   color: inherit;
 }
 
