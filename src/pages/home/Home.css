@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap");
+
+.name-text {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 50px;
+  font-style: normal;
+}

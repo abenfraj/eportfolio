@@ -56,6 +56,7 @@ const Navbar = () => {
         justifyContent: "center",
         padding: "10px",
         gap: "10px",
+        zIndex: 1000,
       }}
     >
       {icons.map((item) => (
