@@ -3,7 +3,10 @@
 .name-text {
   font-family: "EB Garamond", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-size: 50px;
-  font-style: normal;
+  font-size: 65px;
+  font-weight: 800;
+}
+
+.social-icon {
+  margin: 0 20px;
 }

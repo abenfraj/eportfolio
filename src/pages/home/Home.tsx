@@ -1,72 +1,135 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Icon, Snackbar } from "@mui/material";
 import TextAnimator from "../../components/text-animator-props/TextAnimator";
+import MuiAlert from '@mui/material/Alert';
 import "./Home.css";
 
-class Home extends React.Component {
-  render() {
-    const texts = ["WEB3 Developer", "Crypto Investor", "Software Engineer"];
+const Home = () => {
+  const [open, setOpen] = useState(false);
 
-    const backgroundStyle: React.CSSProperties = {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundImage: "url('" + process.env.PUBLIC_URL + "/banner.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      zIndex: -1,
-    };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-    const gridStyle: React.CSSProperties = {
-      position: "relative",
-      height: "100vh",
-      paddingLeft: "10%",
-      paddingRight: "10%",
-      zIndex: 1,
-    };
+  const handleEmailCopy = () => {
+    navigator.clipboard.writeText("ayoub.benfraj013@gmail.com");
+    setOpen(true);
+  };
 
-    return (
-      <>
-        <div style={backgroundStyle} /> {/* Background image div */}
-        <Grid container spacing={2} style={gridStyle}>
-          <Grid item xs={1}></Grid>
+  const texts = ["WEB3 Developer", "Crypto Investor", "Software Engineer"];
+
+  const backgroundStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: `url(${process.env.PUBLIC_URL}/banner.jpg)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    zIndex: -1,
+  };
+
+  const gridStyle = {
+    position: "relative",
+    height: "100vh",
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    zIndex: 1,
+  };
+
+  return (
+    <>
+      <div style={backgroundStyle as React.CSSProperties}></div>
+      <Grid container spacing={2} sx={gridStyle}>
+        <Grid item xs={1}></Grid>
+        <Grid
+          item
+          xs={4}
+          sx={{
+            paddingLeft: "10px",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <span className="name-text">Ayoub Ben Fraj</span>
+          <TextAnimator texts={texts} />
           <Grid
-            item
-            xs={4}
+            container
+            spacing={2}
             sx={{
-              paddingLeft: "10px",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            <span className="name-text">Ayoub BEN FRAJ</span>
-            <TextAnimator texts={texts} />
-          </Grid>
-          <Grid
-            item
-            xs={7}
-            sx={{
+              marginTop: "15rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <img
-              src={process.env.PUBLIC_URL + "/portrait.png"}
-              alt="placeholder"
-              style={{
-                borderRadius: "50%",
-                width: "70%",
-              }}
-            />
+            <Icon className="social-icon" sx={{ fontSize: 40 }}>
+              <a
+                href="https://www.linkedin.com/in/abenfraj/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src={`${process.env.PUBLIC_URL}/linkedin.png`}
+                  alt="linkedin"
+                  style={{ width: "100%" }}
+                />
+              </a>
+            </Icon>
+            <Icon className="social-icon" sx={{ fontSize: 40 }}>
+              <a
+                href="https://www.github.com/abenfraj"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src={`${process.env.PUBLIC_URL}/github.png`}
+                  alt="github"
+                  style={{ width: "100%" }}
+                />
+              </a>
+            </Icon>
+            <Icon
+              className="social-icon"
+              sx={{ fontSize: 40, cursor: 'pointer' }}
+              onClick={handleEmailCopy}
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/gmail.png`}
+                alt="email"
+                style={{ width: "100%" }}
+              />
+            </Icon>
           </Grid>
         </Grid>
-      </>
-    );
-  }
+        <Grid
+          item
+          xs={7}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={`${process.env.PUBLIC_URL}/portrait.png`}
+            alt="placeholder"
+            style={{
+              borderRadius: "50%",
+              width: "70%",
+            }}
+          />
+        </Grid>
+      </Grid>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
+          Email copied to clipboard!
+        </MuiAlert>
+      </Snackbar>
+    </>
+  );
 }
 
 export default Home;
