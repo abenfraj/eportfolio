@@ -12,7 +12,7 @@ import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
 import "./Navbar.css"; // Import the CSS file here
 
 const icons = [
-  { icon: <HomeOutlinedIcon />, label: "Home", id: "home", path: "/" },
+  { icon: <HomeOutlinedIcon />, label: "Intro", id: "intro", path: "/" },
   { icon: <InfoOutlinedIcon />, label: "About", id: "info", path: "/info" },
   {
     icon: <DescriptionOutlinedIcon />,

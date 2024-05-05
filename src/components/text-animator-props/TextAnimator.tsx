@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./TextAnimator.css"; // Import the CSS for styling
+import "./TextAnimator.css";
 
 interface TextAnimatorProps {
   texts: string[];
@@ -10,10 +10,10 @@ const TextAnimator: React.FC<TextAnimatorProps> = ({ texts }) => {
   const morphRef = useRef(0);
   const cooldownRef = useRef(0);
   const lastTimeRef = useRef(Date.now());
-  const [fraction, setFraction] = useState(0); // To trigger updates for morphing effect
+  const [fraction, setFraction] = useState(0);
 
-  const morphTime = 1; // Increased time for text to fully morph
-  const cooldownTime = 2; // Added pause time between morphs
+  const morphTime = 1;
+  const cooldownTime = 2;
 
   useEffect(() => {
     const animate = () => {

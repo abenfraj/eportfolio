@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+
+.about-text {
+    font-family: "Teachers", sans-serif;
+    color:#1d6271;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 4.5rem;
+    font-style: normal;
+}
+
+.highlight {
+    transition: color 0.3s ease-in-out;
+}
+
+.highlight-active {
+    color: white;
+}
+
+.details-text {
+    font-family: "Teachers", sans-serif;
+    color:white;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 1rem;
+    font-style: normal;
+}
+
+@keyframes oscillate {
+
+    0%,
+    100% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+.button-normal {
+    background-color: #000 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+    font-size: 1.2rem !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 7rem;
+    width: 100%;
+}
+
+.button-hover {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 3px solid #000 !important;
+}
