@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Icon, Snackbar } from "@mui/material";
 import TextAnimator from "../../components/text-animator-props/TextAnimator";
-import MuiAlert from '@mui/material/Alert';
+import MuiAlert from "@mui/material/Alert";
 import "./IntroSection.css";
 
 const IntroSection = () => {
@@ -9,18 +9,28 @@ const IntroSection = () => {
   const [time, setTime] = useState("");
   const [temperature, setTemperature] = useState("");
   const temperatureApiKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-  
 
   useEffect(() => {
     const fetchData = async () => {
       const timeData = Date.now();
-      const options = { timeZone: 'Europe/Paris', hour: 'numeric' as const, minute: 'numeric' as const, second: 'numeric' as const};
-      const timeString = new Intl.DateTimeFormat('en-US', options).format(timeData);
+      const options = {
+        timeZone: "Europe/Paris",
+        hour: "numeric" as const,
+        minute: "numeric" as const,
+        second: "numeric" as const,
+      };
+      const timeString = new Intl.DateTimeFormat("en-US", options).format(
+        timeData
+      );
       setTime(timeString);
 
-      const temperatureResponse = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=48.866667&lon=2.333333&appid=" + temperatureApiKey + "&units=metric");
+      const temperatureResponse = await fetch(
+        "https://api.openweathermap.org/data/2.5/weather?lat=48.866667&lon=2.333333&appid=" +
+          temperatureApiKey +
+          "&units=metric"
+      );
       const temperatureData = await temperatureResponse.json();
-      setTemperature(temperatureData.main.temp);
+      setTemperature(temperatureData.main?.temp);
     };
 
     fetchData();
@@ -28,7 +38,7 @@ const IntroSection = () => {
     const timeInterval = setInterval(() => {
       fetchData();
     }, 1000);
-    
+
     const temperatureInterval = setInterval(() => {
       fetchData();
     }, 600000);
@@ -48,7 +58,13 @@ const IntroSection = () => {
     setOpen(true);
   };
 
-  const texts = ["WEB3 Developer", "Software Engineer", "Project Contributor", "Node Runner", "Crypto Investor"];
+  const texts = [
+    "WEB3 Developer",
+    "Software Engineer",
+    "Project Contributor",
+    "Node Runner",
+    "Crypto Investor",
+  ];
 
   const backgroundStyle = {
     position: "absolute",
@@ -60,9 +76,7 @@ const IntroSection = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     zIndex: -1,
-    };
-
-
+  };
 
   const gridStyle = {
     position: "relative",
@@ -73,7 +87,7 @@ const IntroSection = () => {
   };
 
   return (
-    <>
+    <div id="intro-section">
       <div style={backgroundStyle as React.CSSProperties}></div>
       <Grid container spacing={2} sx={gridStyle}>
         <Grid item xs={1}></Grid>
@@ -127,7 +141,7 @@ const IntroSection = () => {
             </Icon>
             <Icon
               className="social-icon"
-              sx={{ fontSize: 40, cursor: 'pointer' }}
+              sx={{ fontSize: 40, cursor: "pointer" }}
               onClick={handleEmailCopy}
             >
               <img
@@ -173,17 +187,33 @@ const IntroSection = () => {
             width: "18%",
           }}
         >
-          <span className="coordinates-text" style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontWeight: 800 }}>Based in Paris, France</span>
-          <span className="coordinates-text" style={{ fontSize: '0.9rem' }}>{time} UTC+2, &nbsp;&nbsp;{temperature} °C</span>
+          <span
+            className="coordinates-text"
+            style={{
+              fontSize: "1.2rem",
+              marginBottom: "0.5rem",
+              fontWeight: 800,
+            }}
+          >
+            Based in Paris, France
+          </span>
+          <span className="coordinates-text" style={{ fontSize: "0.9rem" }}>
+            {time} UTC+2, &nbsp;&nbsp;{temperature} °C
+          </span>
         </Grid>
       </Grid>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-        <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity="success"
+        >
           Email copied to clipboard!
         </MuiAlert>
       </Snackbar>
-    </>
+    </div>
   );
-}
+};
 
 export default IntroSection;

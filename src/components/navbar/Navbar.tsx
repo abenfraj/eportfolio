@@ -1,5 +1,5 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -9,11 +9,21 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
-import "./Navbar.css"; // Import the CSS file here
+import "./Navbar.css";
 
 const icons = [
-  { icon: <HomeOutlinedIcon />, label: "Intro", id: "intro", path: "/" },
-  { icon: <InfoOutlinedIcon />, label: "About", id: "info", path: "/info" },
+  {
+    icon: <HomeOutlinedIcon />,
+    label: "Intro",
+    id: "intro-section",
+    path: "/#intro-section",
+  },
+  {
+    icon: <InfoOutlinedIcon />,
+    label: "About",
+    id: "about-section",
+    path: "/#about-section",
+  },
   {
     icon: <DescriptionOutlinedIcon />,
     label: "Resume",
@@ -42,6 +52,23 @@ const icons = [
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleIconClick = (item: any) => {
+    const element = document.getElementById(item.id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      navigate(item.path);
+    }
+  };
+
+  // Function to determine if the icon should be marked as selected
+  const isSelected = (itemPath: any) => {
+    const [path, hash] = itemPath.split("#");
+    return (
+      location.pathname === path && (!hash || location.hash === `#${hash}`)
+    );
+  };
 
   return (
     <Box
@@ -62,10 +89,10 @@ const Navbar = () => {
       {icons.map((item) => (
         <Box
           key={item.id}
-          component={Link}
-          to={item.path}
+          component="div"
+          onClick={() => handleIconClick(item)}
           className={`nav-item ${
-            location.pathname === item.path ? "nav-item-selected" : ""
+            isSelected(item.path) ? "nav-item-selected" : ""
           }`}
         >
           <IconButton
